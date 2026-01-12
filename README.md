@@ -1,40 +1,45 @@
-Enhancing Cloud Data Security with Blockchain
-Abstract
+# Enhancing Cloud Data Security with Blockchain
 
-The goal of this project is to secure cloud-stored data using dynamic AES encryption, blockchain-based decentralized key management, and Elliptic Curve Cryptography (ECC). Each file gets a unique, constantly changing AES key, while blockchain ensures secure storage of these keys in a tamper-proof way. ECC adds extra security for file sharing and transmission. This system improves data confidentiality, integrity, and security in modern cloud environments.
+## Abstract
+The goal of this project is to **secure cloud-stored data** using:
 
-Problem Definition
+- **Dynamic AES encryption** for unique keys per file  
+- **Blockchain-based decentralized key management** for secure, tamper-proof key storage  
+- **Elliptic Curve Cryptography (ECC)** for safe file sharing and transmission  
 
-Cloud storage is convenient and scalable, but data is vulnerable to unauthorized access.
+This system improves **confidentiality, integrity, and security** of cloud data while addressing the limitations of traditional centralized storage.
 
-Centralized key management creates a single point of failure.
+---
 
-A more flexible and decentralized solution is needed to protect sensitive data.
+## Problem Definition
+- Cloud storage is convenient and scalable, but **data is vulnerable** to unauthorized access.  
+- Centralized key management creates a **single point of failure**.  
+- A **flexible, decentralized solution** is required to protect sensitive data.  
+- This project combines **dynamic AES encryption** with **blockchain key management** to provide robust cloud data security.
 
-This project uses blockchain and dynamic AES to solve these issues, making cloud storage safer and more reliable.
+---
 
-Literature Survey (Short)
+## Literature Survey
+1. **Hybrid AES-ECC Model:** Combines AES encryption and ECC-generated keys for secure, efficient cloud storage.  
+2. **Blockchain Key Management:** Stores encryption keys in a decentralized, immutable ledger to prevent tampering.  
+3. **Dynamic AES Encryption:** Generates unique keys per file and rotates them regularly to reduce the impact of key compromise.
 
-Hybrid AES-ECC Model: Combines AES encryption and ECC keys for secure, fast cloud storage.
+---
 
-Blockchain Key Management: Decentralized ledger for tamper-proof key storage.
-
-Dynamic AES: Unique keys per file, rotated regularly to prevent key compromise.
-
-Project Location
-
-Store the code at:
+## Project Location
+Store the project code at:
 
 C:\Users\dheve\OneDrive\Desktop\Code (2)\Code (2)\Code\Code
 
-Running the Django Server
 
-Open CMD in project folder:
+---
 
+## Running the Django Server
+1. Open terminal/CMD in the project folder:
+```cmd
 cd "C:\Users\dheve\OneDrive\Desktop\Code (2)\Code (2)\Code\Code"
 
-
-Run:
+Run the development server:
 
 python manage.py runserver
 
@@ -45,7 +50,7 @@ http://127.0.0.1:8000/
 
 Smart Contract Setup (Truffle + Ganache)
 
-Open terminal in folder with truffle-config.js.
+Navigate to the folder containing truffle-config.js.
 
 Compile contracts:
 
@@ -57,12 +62,12 @@ Deploy contracts to Ganache:
 truffle migrate --reset --network development
 
 
-Copy UserContract address from deployed contracts and paste in ./myapp/views.py:
+Copy UserContract address from the deployed contracts and paste in ./myapp/views.py:
 
 user_contract_address = "paste_address_here"
 
 
-Copy any account address from Ganache accounts and paste in ./myapp/views.py:
+Copy any account address from Ganache and paste in ./myapp/views.py:
 
 one_account = "paste_account_here"
 
@@ -79,16 +84,27 @@ EMAIL_HOST_PASSWORD = 'your_app_password'
 
 Notes
 
-Never commit secrets like Firebase keys or passwords. Add them to .gitignore:
+Do not commit secrets (Firebase keys, passwords) to GitHub. Add them to .gitignore:
 
 *.json
 *.env
 
 
-Make sure Ganache is running before deploying or testing contracts.
+Ensure Ganache is running before deploying or testing smart contracts.
 
-Use virtual environment for Python dependencies:
+Use a Python virtual environment:
 
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
+
+Author
+
+Dhevesh Arun
+
+
+---
+
+If you want, Dhevesh, I can also **add a small diagram section or badges** (Python, Django, Solidity, GitHub stars) so the README looks **super professional** on GitHub.  
+
+Do you want me to do that?
