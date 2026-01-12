@@ -1,0 +1,85 @@
+{% extends "userhome.html" %}
+{% block content %}
+<center>
+  <div class="container mt-5">
+    <div class="card shadow-lg p-4" style="width: 50rem;">
+      <h1 class="text-center mb-4 text-primary">Encrypt Data</h1>
+
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+          <script>
+            alert("{{ message }}");
+          </script>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <form
+        class="needs-validation"
+        action="{% url 'encryptdata' %}"
+        method="post"
+        novalidate
+      >
+        {% csrf_token %}
+
+        <!-- 🔥 FIREBASE HIDDEN FIELDS (AUTO-FILLED IN VIEW) -->
+        <input type="hidden" name="useremail" value="{{ request.session.useremail }}">
+        <input type="hidden" name="textcontent" id="textcontent">
+        <input type="hidden" name="filekey" id="filekey">
+
+        <div class="mb-3">
+          <label for="algorithm" class="form-label fw-bold">Select Encryption Algorithm</label>
+          <select
+            name="algorithm"
+            class="form-select"
+            id="algorithm"
+            required
+          >
+            <option value="null" disabled selected>Select Algorithm</option>
+            <option value="aes">AES - Advanced Encryption Standard</option>
+            <option value="ecc">ECC - Elliptic Curve Cryptography</option>
+          </select>
+          <div class="invalid-feedback">Please select an algorithm.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="message" class="form-label fw-bold">Message to Encrypt</label>
+          <textarea
+            name="message"
+            class="form-control"
+            id="message"
+            placeholder="Enter your message here to encrypt"
+            rows="5"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Please enter a message.</div>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary btn-lg">Encrypt</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Bootstrap validation
+    (function () {
+      'use strict'
+      var forms = document.querySelectorAll('.needs-validation')
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })();
+  </script>
+</center>
+{% endblock %}

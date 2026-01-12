@@ -1,0 +1,13 @@
+#in truffle-config.js path run
+truffle compile
+
+#truffle migrate --reset --network development
+
+1.first deploy the truffle-config in ganachi 
+2.copy the address of UserContract from contracts and put it in
+./myapp/views in user_contract_address also copy the address from any user in accounts and past it in ./myapp/views in oneaccount
+
+and for email
+enable 2-step-verificationn(https://myaccount.google.com/u/1/security?pageId=none)
+and in Google Account → Security
+create the app and save password in settings.py in eccaes(https://myaccount.google.com/apppasswords)

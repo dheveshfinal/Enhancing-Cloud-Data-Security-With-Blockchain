@@ -1,0 +1,60 @@
+{% extends "cloudhome.html" %}
+{% block content %}
+
+<!-- Display success message -->
+{% if messages %}
+    <div class="col-md-12">
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<!-- Heading for the user details section -->
+<div class="text-center my-4">
+    <h2 class="text-warning" style="
+   
+    margin-top: 0px;
+    left: 680px;
+    width: 295px;
+
+">View User Details</h2>
+</div>
+
+<!-- Table for displaying user details -->
+<div style="width: 100%;overflow: auto;margin-top: 248px;border-right-width: 0px;margin-right: 216px;">
+    
+    <table style="border: 2px solid rgb(203 217 3); width: 100%;">
+        <tr>
+            <th class="text-warning bg-dark">Id</th>
+            <th class="text-warning bg-dark">Name</th>
+            <th class="text-warning bg-dark">Email</th>
+            <th class="text-warning bg-dark">Contact</th>
+            <th class="text-warning bg-dark">Address</th>
+            <th class="text-warning bg-dark">Action</th>
+        </tr>
+        {% for row in usersdata %}
+        <tr>
+            <td class="text-info bg-dark">{{ row.id }}</td>
+            <td class="text-info bg-dark">{{ row.name }}</td>
+            <td class="text-info bg-dark">{{ row.email }}</td>
+            <td class="text-info bg-dark">{{ row.contact }}</td>
+            <td class="text-info bg-dark">{{ row.address }}</td>
+            <td class="text-info bg-dark">
+                <a style="color:red" href="{% url 'acceptuser' row.id %}" onclick="return confirmActivation();">
+                    {{ row.status }}
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script type="text/javascript">
+    function confirmActivation() {
+        return confirm("Are you sure you want to activate this User?");
+    }
+</script>
+{% endblock %}

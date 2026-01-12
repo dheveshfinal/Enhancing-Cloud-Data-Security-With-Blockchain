@@ -1,0 +1,75 @@
+{% extends "userhome.html" %}
+{% block content %}
+
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-body">
+      <center>
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+            <script>
+              alert("{{ message }}");
+            </script>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if files == 'True' %}
+        <h1 class="mb-4 text-primary">Decrypt File Page</h1>
+        <form class="row g-3 justify-content-center" action="{% url 'viewmyfiles' id %}" method="post">
+          {% csrf_token %}
+          <div class="col-auto">
+            <label for="filekey" class="form-label visually-hidden">File Key</label>
+            <input
+              type="text"
+              name="filekey"
+              class="form-control mb-3 shadow"
+              id="filekey"
+              placeholder="Enter File Key"
+              style="width: 300px;"
+              required
+            />
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary shadow">Submit</button>
+          </div>
+        </form>
+        {% else %}
+        <h2 class="text-success mb-4">Decrypted Content</h2>
+        <textarea
+          id="text-val"
+          rows="6"
+          readonly
+          class="form-control mb-4"
+          style="height: 200px; width: 400px;"
+        >{{ content }}</textarea>
+        <button id="dwn-btn" class="btn btn-success shadow">Download</button>
+        {% endif %}
+      </center>
+    </div>
+  </div>
+</div>
+
+<script>
+  function download(filename, text) {
+    var element = document.createElement("a");
+    element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
+    element.setAttribute("download", filename);
+    element.style.display = "none";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  }
+
+  // Trigger file download
+  document.getElementById("dwn-btn").addEventListener("click", function () {
+    var text = document.getElementById("text-val").value;
+    var filename = "Decrypted_File.txt";
+    download(filename, text);
+  }, false);
+</script>
+
+{% endblock %}

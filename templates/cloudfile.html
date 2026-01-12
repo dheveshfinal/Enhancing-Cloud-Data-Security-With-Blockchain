@@ -1,0 +1,60 @@
+{% extends "cloudhome.html" %}
+{% block content %}
+
+<div class="container">
+  <center><h2 style="color:rgb(48, 241, 241);">View my Files</h2></center>
+  <div class="card shadow-lg mb-8">
+    
+    <div class="card-body">
+      <div class="table-responsive" style="max-height: 30rem; overflow-y: auto;">
+        
+        <table class="table table-dark table-hover" style="color: white;">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">User Email</th>
+              <th scope="col">Text Content</th>
+              <th scope="col">Date Time</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% if file == 'yesfile' %}
+              {% for data in encrypted_data %}
+              <tr>
+                <td>{{ data.id }}</td>
+                <td>{{ data.useremail }}</td>
+                <td>{{ data.textcontent }}</td>
+                <td>{{ data.datetime }}</td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              {% for data in encrypted_data %}
+              <tr>
+                <td>{{ data.id }}</td>
+                <td>{{ data.useremail }}</td>
+                <td>{{ data.textcontent }}</td>
+                <td>{{ data.datetime }}</td>
+                
+              </tr>
+              {% endfor %}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Optional JavaScript for additional features can be added here
+  // For example, tooltips for action buttons
+  document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  });
+</script>
+
+{% endblock %}
